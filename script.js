@@ -45,9 +45,56 @@ function addNewWe(){
         ecOb.insertBefore(newNode, ecAddButtonOb)
     }
     
-//generating cv
+    // Input validation for email and phone number
+function validateForm() {
+    let emailField = document.getElementById("emailField");
+    let contactField = document.getElementById("contactField");
+    let emailError = document.getElementById("emailError");
+    let contactError = document.getElementById("contactError");
+    let isValid = true;
+
+    // Email validation
+    if (!isValidEmail(emailField.value)) {
+        emailError.innerText = "Please enter a valid email address.";
+        isValid = false;
+    } else {
+        emailError.innerText = "";
+    }
+
+    // Phone number validation
+    if (!isValidPhoneNumber(contactField.value)) {
+        contactError.innerText = "Please enter a 10-digit phone number.";
+        isValid = false;
+    } else {
+        contactError.innerText = "";
+    }
+
+    return isValid;
+}
+
+// Function to check if email is valid
+function isValidEmail(email) {
+    // Regular expression for email validation
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Function to check if phone number is valid
+function isValidPhoneNumber(phoneNumber) {
+    // Regular expression for 10-digit phone number validation
+    let phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phoneNumber);
+}
+
+// Generate CV function with form validation
+
+
+v
 function generateCV(){
         // console.log("genertaing");
+        if (!validateForm()) {
+            return;
+        }
         let nameField = document.getElementById("nameField").value;
         document.getElementById("nameT").innerHTML = nameField;
         let nameT = document.getElementById("nameT");
